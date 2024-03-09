@@ -14,7 +14,6 @@ class HKBU_ChatGPT():
     def submit(self,message):
         conversation = [{"role": "user", "content": message}]
         url = (os.environ['CHATGPT_BASICURL']) + "/deployments/" + (os.environ['CHATGPT_MODELNAME']) + "/chat/completions/?api-version=" + (os.environ['CHATGPT_APIVERSION'])
-        logging.info("url="+url)
         headers = { 'Content-Type': 'application/json', 'api-key': (os.environ['CHATGPT_ACCESS_TOKEN']) }
         payload = { 'messages': conversation }
         response = requests.post(url, json=payload, headers=headers)
