@@ -14,10 +14,8 @@ class HKBU_ChatGPT():
     def submit(self,message):
         conversation = [{"role": "user", "content": message}]
         url = (os.environ['CHATGPT_BASICURL']) + "/deployments/" + (os.environ['CHATGPT_MODELNAME']) + "/chat/completions/?api-version=" + (os.environ['CHATGPT_APIVERSION'])
-        #url="https://chatgpt.hkbu.edu.hk/general/rest/deployments/gpt-4-turbo/chat/completions/?api-version="+ (os.environ['CHATGPT_APIVERSION'])
         logging.info("url="+url)
         headers = { 'Content-Type': 'application/json', 'api-key': (os.environ['CHATGPT_ACCESS_TOKEN']) }
-        #headers = { 'Content-Type': 'application/json', 'api-key': "dec78909-63ce-415c-b989-fb5fbdcc8f4c" }
         payload = { 'messages': conversation }
         response = requests.post(url, json=payload, headers=headers)
         if response.status_code == 200:
